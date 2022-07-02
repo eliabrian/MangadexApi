@@ -1,0 +1,44 @@
+{
+    "name": "eliabrian/mangadex-api",
+    "description": "An unofficial PHP wrapper for MangaDex API",
+    "keywords": [
+        "eliabrian",
+        "mangadex-api"
+    ],
+    "homepage": "https://github.com/eliabrian/mangadex-api",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Elia Brian Baskoro",
+            "email": "eliabrianb@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "caseyamcl/guzzle_retry_middleware": "^2.7",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Eliabrian\\MangadexApi\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Eliabrian\\MangadexApi\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

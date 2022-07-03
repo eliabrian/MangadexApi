@@ -50,4 +50,23 @@ class MangadexApi
 
         return $query;
     }
+
+    /**
+     * Handle request's response
+     * 
+     * @param Psr\Http\Message\ResponseInterface $response
+     * 
+     * @return object
+     */
+    protected function handleResponse ($response) : object
+    {
+        if ($response->getStatusCode() === 200) {
+            return json_decode($response->getBody());
+        } else {
+            return json_encode([
+                'statusCode' => $response->getStatusCode(),
+                'reason' => $response->getReasonPhrase(),
+            ]);
+        }
+    }
 }

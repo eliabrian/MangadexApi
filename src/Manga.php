@@ -8,6 +8,8 @@ class Manga extends MangadexApi
 {
     private const MANGA_ENDPOINT = '/manga';
     private const RELATION_ENDPOINT = '/relation';
+    private const RANDOM_ENDPOINT = '/random';
+    private const TAG_ENDPOINT = '/tag';
 
     /**
      * Get Manga Lists
@@ -25,14 +27,7 @@ class Manga extends MangadexApi
             'query' => $query,
         ]);
 
-        if ($response->getStatusCode() === 200) {
-            return json_decode($response->getBody());
-        } else {
-            return json_encode([
-                'statusCode' => $response->getStatusCode(),
-                'reason' => $response->getReasonPhrase(),
-            ]);
-        }
+        return $this->handleResponse($response);
     }
 
     /**
@@ -40,6 +35,7 @@ class Manga extends MangadexApi
      * 
      * @param string $id
      * @param bool $withRelationship
+     * @param array $queryParams
      * 
      * @return object
      */
@@ -54,24 +50,49 @@ class Manga extends MangadexApi
             'query' => $query,
         ]);
 
-        if ($response->getStatusCode() === 200) {
-            return json_decode($response->getBody());
-        } else {
-            return json_encode([
-                'statusCode' => $response->getStatusCode(),
-                'reason' => $response->getReasonPhrase(),
-            ]);
-        }
+        return $this->handleResponse($response);
     }
 
     /**
-     * TODO: Get Random Manga
+     * Get a random Manga
+     * 
+     * @param array $queryParams
      * 
      * @return object
      */
 
-    public function getRandomManga () : object
+    public function getRandomManga (array $queryParams = []) : object
     {
-    
+        $query = $this->buildQueryParams($queryParams);
+
+        $response = $this->client->request('GET', self::MANGA_ENDPOINT . self::RANDOM_ENDPOINT, [
+            'query' => $query,
+        ]);
+
+        return $this->handleResponse($response);
+    }
+
+    /**
+     * Get all manga tags
+     * 
+     * @return object
+     */
+    public function getMangaTags () : object
+    {
+        $response = $this->client->request('GET', self::MANGA_ENDPOINT . self::TAG_ENDPOINT);
+
+        return $this->handleResponse($response);
+    }
+
+    /**
+     * TODO: Get manga volumes and chapters
+     * 
+     * @param array $queryParams
+     * 
+     * @return object
+     */
+    public function getMangaAggregate(Type $var = null)
+    {
+        //
     }
 }

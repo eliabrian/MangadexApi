@@ -33,4 +33,28 @@ final class MangaTest extends TestCase
 
         $this->assertEquals('ok', $manga->result);
     }
+
+    /**
+     * Assert get a random manga
+     */
+    public function testGetRandomManga () : void
+    {
+        $mangadex = new Manga();
+
+        $manga = $mangadex->getRandomManga();
+
+        $this->assertEquals('ok', $manga->result);
+    }
+
+    /**
+     * Assert get all manga tags
+     */
+    public function testGetMangaTags () : void
+    {
+        $mangadex = new Manga();
+
+        $tags = $mangadex->getMangaTags();
+
+        $this->assertEquals('ok', $tags->result);
+    }
 }

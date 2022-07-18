@@ -16,39 +16,39 @@ class Manga extends MangadexApi
     /**
      * @var array
      */
-    public $query = [];
+    public array $query = [];
 
     /**
      * @var string
      */
-    public $id = '';
+    public string $id = '';
 
     /**
      * @var string
      */
-    public $url =  self::MANGA_ENDPOINT;
+    public string $url =  self::MANGA_ENDPOINT;
 
     /**
-     * Method chain an include query to the request
+     * Method chains an included query to the request
      * 
      * @param array $include
      * 
-     * @return array
+     * @return Manga
      */
-    public function includes (array $include)
+    public function includes (array $include): Manga
     {
         $this->query['includes'] = $include;
         return $this;
     }
 
     /**
-     * Method chain a limit query to the request
+     * Method chains a limit query to the request
      * 
      * @param int $limit
      * 
-     * @return array
+     * @return Manga
      */
-    public function limit (int $limit)
+    public function limit (int $limit): Manga
     {
         $this->query['limit'] = $limit;
         return $this;
@@ -59,9 +59,9 @@ class Manga extends MangadexApi
      * 
      * @param int $offset
      * 
-     * @return array
+     * @return Manga
      */
-    public function offset (int $offset)
+    public function offset (int $offset): Manga
     {
         $this->query['offset'] = $offset;
         return $this;
@@ -72,9 +72,9 @@ class Manga extends MangadexApi
      * 
      * @param string $title
      * 
-     * @return array
+     * @return Manga
      */
-    public function title (string $title)
+    public function title (string $title): Manga
     {
         $this->query['title'] = $title;
         return $this;
@@ -85,9 +85,9 @@ class Manga extends MangadexApi
      * 
      * @param array $languages
      * 
-     * @return array
+     * @return Manga
      */
-    public function language (array $languages)
+    public function language (array $languages): Manga
     {
         $this->query['translatedLanguage'] = $languages;
         return $this;
@@ -98,9 +98,9 @@ class Manga extends MangadexApi
      * 
      * @param string $id
      * 
-     * @return string
+     * @return Manga
      */
-    public function id (string $id)
+    public function id (string $id): Manga
     {
         $this->url .= '/' . $id;
         return $this;
@@ -109,9 +109,9 @@ class Manga extends MangadexApi
     /**
      * Method chain a aggregate to Manga ID request
      * 
-     * @return string
+     * @return Manga
      */
-    public function aggregate ()
+    public function aggregate (): Manga
     {
         $this->url .= self::AGGREGATE_ENDPOINT;
         return $this;
@@ -120,9 +120,9 @@ class Manga extends MangadexApi
     /**
      * Method chain a relation to Manga ID request
      * 
-     * @return string
+     * @return Manga
      */
-    public function withRelation ()
+    public function withRelation () : Manga
     {
         $this->url .= self::RELATION_ENDPOINT;
         return $this;
@@ -131,9 +131,9 @@ class Manga extends MangadexApi
     /**
      * Method chain a random manga to the request
      * 
-     * @return string
+     * @return Manga
      */
-    public function random ()
+    public function random () : Manga
     {
         $this->url .= self::RANDOM_ENDPOINT;
         return $this;
@@ -142,9 +142,9 @@ class Manga extends MangadexApi
     /**
      * Method chain manga tags to the request
      * 
-     * @return string
+     * @return Manga
      */
-    public function tag ()
+    public function tag () : Manga
     {
         $this->url .= self::TAG_ENDPOINT;
         return $this;
@@ -153,9 +153,9 @@ class Manga extends MangadexApi
     /**
      * Method chain manga feeds to the request
      * 
-     * @return string
+     * @return Manga
      */
-    public function feed ()
+    public function feed () : Manga
     {
         $this->url .= self::FEED_ENDPOINT;
         return $this;
@@ -163,11 +163,8 @@ class Manga extends MangadexApi
 
     /**
      * Get Manga Lists
-     * 
-     * @param array $queryParams
-     * 
+     *
      * @return object
-     * 
      */
     public function get () : object
     {   
